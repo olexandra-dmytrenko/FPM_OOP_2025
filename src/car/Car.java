@@ -21,6 +21,7 @@ public abstract class Car implements TransportMovement {
      * @param direction
      * @return
      */
+
     @Override
     public boolean drive(int speed, GeographicalCoordinates direction) {
         return drive(speed, direction.transformToOneDimensional());
