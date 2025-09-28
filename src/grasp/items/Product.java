@@ -1,20 +1,13 @@
 package grasp.items;
 
-public class Product {
-    private final String name;
-    private double price;
-    private int presenceNumber;
-    private String color;
-    private double weight;
+public abstract class Product {
+    protected final String name;
+    protected double price;
 
-    public Product(String name, double price, int presenceNumber) {
+    public Product(String name, double price) {
         this.name = name;
         this.price = price;
-        this.presenceNumber = presenceNumber;
-    }
 
-    public void setColor(String color) {
-        this.color = color;
     }
 
     public String getName() {
@@ -25,21 +18,11 @@ public class Product {
         return price;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public int getPresenceNumber() {
-        return presenceNumber;
-    }
-
     @Override
     public String toString() {
         return "Product{" +
                 "name='" + name + '\'' +
                 ", price=" + price +
-                ", color='" + color + '\'' +
-                ", presenceNumber=" + presenceNumber +
                 '}';
     }
 }

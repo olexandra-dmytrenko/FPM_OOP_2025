@@ -1,17 +1,15 @@
 package grasp.run;
 
 import grasp.controller.OrderController;
-import grasp.items.Order;
-import grasp.items.OrderItem;
-import grasp.items.Product;
+import grasp.items.*;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class ShopThroughController {
     public static void main(String[] args) {
-        Product socks = new Product("Socks", 40.0, 20);
-        Product mango = new Product("Mango", 200, 10);
+        ProductByQuantity socks = new ProductByQuantity("Socks", 40.0, 20);
+        ProductByKilos mango = new ProductByKilos("Mango", 200, 10);
 
         OrderItem buySocks = new OrderItem(socks, 5);
         OrderItem buyMango = new OrderItem(mango, 2);

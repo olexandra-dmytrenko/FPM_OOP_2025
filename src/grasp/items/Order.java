@@ -35,7 +35,8 @@ public class Order {
     }
 
     public boolean addItem(Product product, int number){
-        //TODO: оновити кількість товарів після їх додавання до ордеру
+        //TODO: оновити кількість товарів після їх додавання до ордеру;
+        //TODO: розібратись з додаванням товарів на кілограми
         this.orderItems.add(new OrderItem(product, number));
         return true;
     }
