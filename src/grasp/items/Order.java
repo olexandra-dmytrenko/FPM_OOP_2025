@@ -1,5 +1,7 @@
 package grasp.items;
 
+import grasp.validator.ValidateProductQuantityInst;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +39,7 @@ public class Order {
     public boolean addItem(Product product, int number){
         //TODO: оновити кількість товарів після їх додавання до ордеру;
         //TODO: розібратись з додаванням товарів на кілограми
-        this.orderItems.add(new OrderItem(product, number));
+        this.orderItems.add(new OrderItem(product, number, new ValidateProductQuantityInst()));
         return true;
     }
 

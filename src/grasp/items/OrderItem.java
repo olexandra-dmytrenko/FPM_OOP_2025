@@ -1,23 +1,35 @@
 package grasp.items;
 
-import grasp.exeption.ItemNotAddedException;
+import grasp.validator.ValidateProductQuantity;
 
 public class OrderItem {
     private Product product;
     private int number;
     private double kilos;
+    //TODO: треба булоб прибрати залежність від реалізації інтерфейсу, а зробити залежність від абстракції
+//    private final ValidateProductQuantityInst validateProductQuantity = new ValidateProductQuantityInst();
+    //To get rid of high coupling, та раннього зв’язування, use dependency inversion of control we put this parameter in a constructor
+    private final ValidateProductQuantity validateProductQuantity;// = new ValidateProductQuantityInst();
 
-    public OrderItem(Product product, int number) {
-        this.product = product;
-        this.number = number;
-
-        validateNumber(product, number);
+    public OrderItem(Product product, ValidateProductQuantity validateProductQuantity){
+        this.validateProductQuantity = validateProductQuantity;
+        this.validateProductQuantity.validate(product);
     }
 
-    public OrderItem(Product product, double kilos) {
+    public OrderItem(Product product, int number, ValidateProductQuantity validateProductQuantity) {
         this.product = product;
         this.number = number;
-        validateKilos(product, kilos);
+        this.validateProductQuantity = validateProductQuantity;
+        this.validateProductQuantity.validate(product);
+      //  validateProductQuantity.validateNumber(product, number);
+    }
+
+    public OrderItem(Product product, double kilos, ValidateProductQuantity validateProductQuantity) {
+        this.product = product;
+        this.validateProductQuantity = validateProductQuantity;
+        this.number = number;
+        this.validateProductQuantity.validate(product);
+     //   validateProductQuantity.validateKilos(product, kilos);
     }
 
 /* this all was overriden by using Polymorphism; if-else - замінені поліморфізмом, до цього треба наближатись в ООП програмуванні.
@@ -51,16 +63,6 @@ public class OrderItem {
             throw new ItemNotAddedException("Please specify correct number or kilograms for product: " + product);
         } ,mmmk//L</;hbnkhfuy
     }*/
-    private boolean validateKilos(Product product, double kilos) {
-        //TODO: написати валідацію, що не можна купити більше, ніж є
-        return true;
-    }
-
-    private boolean validateNumber(Product product, int number) {
-        //TODO: написати валідацію, що не можна купити більше, ніж є
-        return true;
-    }
-
     public double countPrice(){
         return number * product.getPrice();
     }

@@ -2,6 +2,8 @@ package grasp.run;
 
 import grasp.controller.OrderController;
 import grasp.items.*;
+import grasp.validator.ValidateProductQuantity;
+import grasp.validator.ValidateProductQuantityInst;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,8 +13,9 @@ public class ShopThroughController {
         ProductByQuantity socks = new ProductByQuantity("Socks", 40.0, 20);
         ProductByKilos mango = new ProductByKilos("Mango", 200, 10);
 
-        OrderItem buySocks = new OrderItem(socks, 5);
-        OrderItem buyMango = new OrderItem(mango, 2);
+        ValidateProductQuantity validateProductQuantity = new ValidateProductQuantityInst();
+        OrderItem buySocks = new OrderItem(socks, 5, validateProductQuantity);
+        OrderItem buyMango = new OrderItem(mango, 2, validateProductQuantity);
 
         List<OrderItem> orderItems = Arrays.asList(buyMango, buySocks);
 
