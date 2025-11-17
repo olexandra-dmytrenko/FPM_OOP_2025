@@ -1,5 +1,7 @@
 package grasp.items;
 
+import java.util.Objects;
+
 public class ProductByKilos extends Product{
     private double weight;
     private double presentWeight;
@@ -23,5 +25,20 @@ public class ProductByKilos extends Product{
 
     public void setPresentWeight(double presentWeight) {
         this.presentWeight = presentWeight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        ProductByKilos that = (ProductByKilos) o;
+        return Double.compare(weight, that.weight) == 0 && Double.compare(presentWeight, that.presentWeight) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = (int) (weight+presentWeight);
+        return Objects.hash(super.hashCode(), weight, presentWeight);
     }
 }
